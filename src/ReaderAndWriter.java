@@ -72,7 +72,7 @@ public class ReaderAndWriter {
             readBuffer = reader.read();
 
             while (readBuffer != -1) {
-                baos.write(reader.read());
+                baos.write(readBuffer);
                 readBuffer = reader.read();
             }
         }
