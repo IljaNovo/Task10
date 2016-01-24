@@ -15,15 +15,20 @@ public class main {
             reader = new InputStreamReader(input, "UTF16");
 
             output = new FileOutputStream("C:\\Users\\Lenovo\\Desktop\\Stream\\ou.txt");
-            writer = new BufferedWriter(new OutputStreamWriter(output, "Cp1251"));
+            writer = new OutputStreamWriter(output, "cp1251");
 
             int readBuffer = reader.read();
 
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+
             while (readBuffer != -1) {
-                System.out.println((char)readBuffer);
-                writer.write((char)readBuffer);
+                //System.out.println((char)readBuffer);
+                baos.write(readBuffer);
+                //writer.write((char)readBuffer);
                 readBuffer = reader.read();
             }
+            writer.write(baos.toString());
             writer.flush();
         }
         catch (FileNotFoundException e) {
