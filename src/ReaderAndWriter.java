@@ -8,7 +8,7 @@ public class ReaderAndWriter {
 
     public ReaderAndWriter() {}
 
-    public void openStreamReader(String encoding, String pathReader) throws FileNotFoundException, IOException{
+    public void openStreamReader(String encoding, String pathReader) throws FileNotFoundException, OpenFileException{
         try {
             this.input = new FileInputStream(pathReader);
             this.reader = new InputStreamReader(input, encoding);
@@ -17,7 +17,7 @@ public class ReaderAndWriter {
             throw new FileNotFoundException();
         }
         catch (IOException e) {
-            throw new IOException();
+            throw new OpenFileException();
         }
     }
 
@@ -35,7 +35,7 @@ public class ReaderAndWriter {
         }
     }
 
-    public void openStreamWriter(String encoding, String pathWriter) throws FileNotFoundException, IOException{
+    public void openStreamWriter(String encoding, String pathWriter) throws FileNotFoundException, OpenFileException{
         try {
             output = new FileOutputStream(pathWriter);
             writer = new OutputStreamWriter(output, encoding);
@@ -44,7 +44,7 @@ public class ReaderAndWriter {
             throw new FileNotFoundException();
         }
         catch (IOException e) {
-            throw new IOException();
+            throw new OpenFileException();
         }
     }
 

@@ -15,6 +15,9 @@ public class ParserParams {
     }
 
     public Map<String, String> parseWriteRead(String[] commandLineArguments) throws ParseCommandLineException {
+        if (commandLineArguments == null) {
+            throw new ParseCommandLineException();
+        }
         Options posixOptions = new Options();
 
         posixOptions.addOption(createOption("w", "Write"));
@@ -31,9 +34,12 @@ public class ParserParams {
                 valuesParams.put("Read", commandLine.getOptionValue("r"));
                 valuesParams.put("Write", commandLine.getOptionValue("w"));
             }
+            else {
+                throw new ParseCommandLineException();
+            }
         }
         catch (Throwable e) {
-            throw new ParseCommandLineException("Input data have invalid format.");
+            throw new ParseCommandLineException();
         }
         return valuesParams;
     }

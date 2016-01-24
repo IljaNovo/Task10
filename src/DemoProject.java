@@ -1,11 +1,11 @@
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.Map;
 
 public class DemoProject {
 
     public static void main(String[] args) {
         ParserParams parParams = new ParserParams();
-        Map<String, String> namesFiles;
+        Map<String, String> namesFiles = null;
         ReaderAndWriter raw = new ReaderAndWriter();
 
         try {
@@ -19,10 +19,19 @@ public class DemoProject {
             raw.closeStreamWriter();
         }
         catch (ParseCommandLineException e) {
-            e.getMessage();
+            e.getStackTrace();
         }
-        catch (IOException e) {
-            e.getMessage();
+        catch (ReadDataException e) {
+            e.getStackTrace();
+        }
+        catch (WriteDataException e) {
+            e.getStackTrace();
+        }
+        catch (OpenFileException e) {
+            e.getStackTrace();
+        }
+        catch (FileNotFoundException e) {
+            e.getStackTrace();
         }
     }
 }
