@@ -4,14 +4,16 @@ import java.util.Map;
 public class DemoProject {
 
     public static void main(String[] args) {
+        // Task 1 theme: IOStream, read and write
+
         ParserParams parParams = new ParserParams();
         Map<String, String> namesFiles = null;
         ReaderAndWriter raw = new ReaderAndWriter();
 
         try {
             namesFiles = parParams.parseWriteRead(args);
-            raw.openStreamReader("UTF16", namesFiles.get("Read"));
-            raw.openStreamWriter("cp1251", namesFiles.get("Write"));
+            raw.openStreamReader("UTF16", "src\\" + namesFiles.get("Read"));
+            raw.openStreamWriter("cp1251", "src\\" + namesFiles.get("Write"));
 
             raw.write(raw.read());
 
@@ -33,5 +35,9 @@ public class DemoProject {
         catch (FileNotFoundException e) {
             e.getStackTrace();
         }
+
+        // Task 2 theme: IOStream, read English text
+
+        
     }
 }

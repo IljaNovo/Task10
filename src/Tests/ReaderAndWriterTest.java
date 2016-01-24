@@ -7,7 +7,7 @@ public class ReaderAndWriterTest {
     public void testRead() throws Exception {
         ReaderAndWriter raw = new ReaderAndWriter();
 
-        raw.openStreamReader("UTF8", "C:\\Users\\Lenovo\\Desktop\\Stream\\in.txt");
+        raw.openStreamReader("UTF8", "src\\in.txt");
         String answer = raw.read();
 
         Assert.assertEquals(answer, "Hello");
