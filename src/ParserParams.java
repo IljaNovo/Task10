@@ -1,5 +1,8 @@
 import org.apache.commons.cli.*;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class ParserParams {
 
     public ParserParams() { }
@@ -11,7 +14,7 @@ public class ParserParams {
         return newOption;
     }
 
-    public String[] parseWriteRead(String[] commandLineArguments) throws ParseCommandLineException {
+    public Map<String, String> parseWriteRead(String[] commandLineArguments) throws ParseCommandLineException {
         Options posixOptions = new Options();
 
         posixOptions.addOption(createOption("w", "Write"));
@@ -19,14 +22,14 @@ public class ParserParams {
 
         CommandLineParser cmdLinePosixParser = new PosixParser();
         CommandLine commandLine = null;
-        String[] valuesParams = new String[2];
+        Map<String, String> valuesParams = new HashMap<>();
 
         try {
             commandLine = cmdLinePosixParser.parse(posixOptions, commandLineArguments);
 
             if (commandLine.hasOption("w") && commandLine.hasOption("r")) {
-                valuesParams[0] = commandLine.getOptionValue("w");
-                valuesParams[1] = commandLine.getOptionValue("r");
+                valuesParams.put("Read", commandLine.getOptionValue("r"));
+                valuesParams.put("Write", commandLine.getOptionValue("w"));
             }
         }
         catch (Throwable e) {

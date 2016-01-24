@@ -1,5 +1,6 @@
 import org.junit.Assert;
 import org.junit.Test;
+import java.util.Map;
 
 public class ParserParamsTest {
 
@@ -8,10 +9,10 @@ public class ParserParamsTest {
         ParserParams parParams = new ParserParams();
         String[] args = {"-w", "fileWrite", "-r", "fileRead"};
 
-        String[] valueParams = parParams.parseWriteRead(args);
+        Map<String, String> valueParams = parParams.parseWriteRead(args);
 
-        Assert.assertEquals(valueParams[0], "fileWrite");
-        Assert.assertEquals(valueParams[1], "fileRead");
+        Assert.assertEquals(valueParams.get("Write"), "fileWrite");
+        Assert.assertEquals(valueParams.get("Read"), "fileRead");
     }
 
     @Test
@@ -20,7 +21,7 @@ public class ParserParamsTest {
         String[] args = {"-f", "fileWrite", "fileRead"};
 
         try {
-            String[] valueParams = parParams.parseWriteRead(args);
+            Map<String, String> valueParams = parParams.parseWriteRead(args);
         }
         catch (Throwable e) {
             Assert.assertTrue(true);
@@ -33,7 +34,7 @@ public class ParserParamsTest {
         String[] args = null;
 
         try {
-            String[] valueParams = parParams.parseWriteRead(args);
+            Map<String, String> valueParams = parParams.parseWriteRead(args);
         }
         catch (Throwable e) {
             Assert.assertTrue(true);
