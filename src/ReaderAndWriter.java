@@ -88,6 +88,7 @@ public class ReaderAndWriter {
         }
         try {
             writer.write(str);
+            writer.flush();
         }
         catch (IOException e) {
             e.getMessage();
