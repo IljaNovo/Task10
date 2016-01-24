@@ -14,7 +14,7 @@ public class ReaderAndWriterTest {
     }
 
     @Test
-    public void testReadNonexistendFile() throws Exception {
+    public void testReadNonexistentFile() throws Exception {
         ReaderAndWriter raw = new ReaderAndWriter();
         String answer = "";
 
