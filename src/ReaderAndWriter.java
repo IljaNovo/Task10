@@ -1,10 +1,10 @@
 import java.io.*;
 
 public class ReaderAndWriter {
-    InputStream input;
-    Reader reader;
-    OutputStream output;
-    Writer writer;
+    private InputStream input;
+    private Reader reader;
+    private OutputStream output;
+    private Writer writer;
 
     public ReaderAndWriter() {}
 

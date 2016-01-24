@@ -7,11 +7,14 @@ public class DemoProject {
         Map<String, String> namesFiles;
         ReaderAndWriter raw = new ReaderAndWriter();
 
-        raw.openStreamWriter("cp1251", "ou.txt");
-        raw.openStreamReader("UTF16", "in.txt");
-
         try {
-             namesFiles = parParams.parseWriteRead(args);
+            namesFiles = parParams.parseWriteRead(args);
+            raw.openStreamReader("UTF16", namesFiles.get("Read"));
+            raw.openStreamWriter("cp1251", namesFiles.get("Write"));
+
+            String temp = raw.read();
+
+
         }
         catch (ParseCommandLineException e) {
             e.getMessage();
