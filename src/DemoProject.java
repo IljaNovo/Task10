@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Map;
 
 public class DemoProject {
@@ -12,13 +13,16 @@ public class DemoProject {
             raw.openStreamReader("UTF16", namesFiles.get("Read"));
             raw.openStreamWriter("cp1251", namesFiles.get("Write"));
 
-            String temp = raw.read();
+            raw.write(raw.read());
 
-
+            raw.closeStreamReader();
+            raw.closeStreamWriter();
         }
         catch (ParseCommandLineException e) {
             e.getMessage();
         }
-
+        catch (IOException e) {
+            e.getMessage();
+        }
     }
 }

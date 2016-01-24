@@ -8,16 +8,16 @@ public class ReaderAndWriter {
 
     public ReaderAndWriter() {}
 
-    public void openStreamReader(String encoding, String pathReader) {
+    public void openStreamReader(String encoding, String pathReader) throws FileNotFoundException, IOException{
         try {
             this.input = new FileInputStream(pathReader);
             this.reader = new InputStreamReader(input, encoding);
         }
         catch (FileNotFoundException e) {
-            e.getMessage();
+            throw new FileNotFoundException();
         }
         catch (IOException e) {
-            e.getMessage();
+            throw new IOException();
         }
     }
 
@@ -35,16 +35,16 @@ public class ReaderAndWriter {
         }
     }
 
-    public void openStreamWriter(String encoding, String pathWriter) {
+    public void openStreamWriter(String encoding, String pathWriter) throws FileNotFoundException, IOException{
         try {
             output = new FileOutputStream(pathWriter);
             writer = new OutputStreamWriter(output, encoding);
         }
         catch (FileNotFoundException e) {
-            e.getMessage();
+            throw new FileNotFoundException();
         }
         catch (IOException e) {
-            e.getMessage();
+            throw new IOException();
         }
     }
 
@@ -61,9 +61,9 @@ public class ReaderAndWriter {
         }
     }
 
-    public String read() {
+    public String read() throws ReadDataException{
         if (reader == null) {
-            return "";
+            throw new ReadDataException();
         }
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         int readBuffer = 0;
@@ -77,12 +77,12 @@ public class ReaderAndWriter {
             }
         }
         catch (IOException e) {
-            e.getMessage();
+            throw new ReadDataException();
         }
         return baos.toString();
     }
 
-    public void write(String str) {
+    public void write(String str) throws WriteDataException{
         if (writer == null) {
             throw new WriteDataException();
         }
@@ -91,7 +91,7 @@ public class ReaderAndWriter {
             writer.flush();
         }
         catch (IOException e) {
-            e.getMessage();
+            throw new WriteDataException();
         }
     }
 }
