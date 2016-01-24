@@ -5,8 +5,7 @@ public class ParserParams {
     public ParserParams() { }
 
     private Option createOption(String opt, String description) {
-        Option newOption = new Option(opt, description);
-        newOption.hasArg();
+        Option newOption = new Option(opt, true, description);
         newOption.setOptionalArg(false);
 
         return newOption;
